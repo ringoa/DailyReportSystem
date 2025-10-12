@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>update a employee</title>
+    <link rel="stylesheet" th:href="@{/css/employee/update.css}">
+</head>
+<body>
+	<h1 th:text="'id:' + ${authentication.employee.id} + 'の従業員情報　編集ページ'"></h1>
+	<p>パスワードは変更する場合のみ変更してください</p>
+	<form method="POST" th:action="@{/employee/update}" th:object="${authentication}">
+		<label for="id"></label>
+        <input type="hidden" id="id" name="id" th:field="*{id}">
+		<label for="employeeId"></label>
+        <input type="hidden" id="employeeId" name="employeeId" th:field="*{employee.id}">
+        <label for="createdAt"></label>
+        <input type="hidden" id="createdAt" name="createdAt" th:field="*{employee.createdAt}">
+        <label for="deleteFlag"></label>
+        <input type="hidden" id="deleteFlag" name="deleteFlag" th:field="*{employee.deleteFlag}">
+		<br>
+		<label for="code">社員番号</label>
+		<input type="text" th:field="*{code}" th:errorclass="err">
+		<span th:errors="*{code}" class="err"></span>
+		<br>
+		<label for="name">氏名</label>
+		<input type="text" th:field="*{employee.name}" th:errorclass="err">
+		<span th:errors="*{employee.name}" class="err"></span>
+		<br>
+		<label for="password">パスワード</label>
+		<input type="text" th:field="*{password}" th:errorclass="err">
+		<span th:errors="*{password}" class="err"></span>
+		<br>
+		<label for="role">権限</label>
+		<select th:field="*{role}" th:errorclass="err">
+			<option th:each="item:${T(com.sutaruhin.entity.Authentication.Role).values()}" th:value="${item}" th:text="${item}" th:selected="*{role} == ${item}"></option>
+		</select>
+		<span th:errors="*{role}" class="err"></span>
+		<br>
+		<input type="submit" value="投稿">
+	</form>
+
+	<form th:method="POST" th:action="@{/employee/delete}">
+		<input type="hidden" name="id" th:value="${authentication.employee.id}"></input>
+		<button>この従業員情報を削除する</button>
+	</form>
+
+	<form th:method="GET" th:action="@{/employee/list}">
+		<input type="hidden" name="id" th:value="${authentication.id}"></input>
+		<button>一覧に戻る</button>
+	</form>
+</body>
+</html>

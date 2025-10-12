@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>List of Employee</title>
+	<link rel="stylesheet" th:href="@{/css/employee/list.css}">
+</head>
+<body>
+	<h1>従業員一覧</h1>
+	<table>
+		<tr>
+			<th>社員番号</th>
+			<th>氏名</th>
+			<th>操作</th>
+		</tr>
+		<tr th:each="authentication : ${authentications}">
+			<td th:text="${authentication.code}"></td>
+			<td th:text="${authentication.employee.name}"></td>
+			<td>
+				<form th:method="post" th:action="@{/employee/details}">
+					<input type="hidden" name="id" th:value="${authentication.employee.id}"></input>
+					<button>詳細をみる</button>
+				</form>
+			</td>
+		</tr>
+	</table>
+	<p th:text="'(全' + ${authentications.size()} + '件)'"></p>
+	<a th:href="@{/employee/register}">新規従業員の登録</a>
+</body>
+</html>

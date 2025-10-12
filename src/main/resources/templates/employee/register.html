@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Register a new employee</title>
+    <link rel="stylesheet" th:href="@{/css/employee/register.css}">
+</head>
+<body>
+	<h1>従業員　新規登録</h1>
+	<form method="POST" th:action="@{/employee/register}" th:object="${authentication}">
+		<label for="code">社員番号</label>
+		<input type="text" th:field="*{code}" th:errorclass="err">
+		<span th:errors="*{code}" class="err"></span>
+		<br>
+		<label for="name">氏名</label>
+		<input type="text" th:field="*{employee.name}" th:errorclass="err">
+		<span th:errors="*{employee.name}" class="err"></span>
+		<br>
+		<label for="password">パスワード</label>
+		<input type="text" th:field="*{password}" th:errorclass="err">
+		<span th:errors="*{password}" class="err"></span>
+		<br>
+		<label for="role">権限</label>
+		<select th:field="*{role}" th:errorclass="err">
+			<option th:each="item:${T(com.sutaruhin.entity.Authentication.Role).values()}" th:value="${item}" th:text="${item}"></option>
+		</select>
+		<span th:errors="*{role}" class="err"></span>
+		<br>
+		<input type="submit" value="投稿">
+	</form>
+	<a th:href="@{/employee/list}">一覧に戻る</a>
+</body>
+</html>

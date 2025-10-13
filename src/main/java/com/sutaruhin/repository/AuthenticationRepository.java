@@ -1,6 +1,7 @@
 package com.sutaruhin.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -13,4 +14,6 @@ public interface AuthenticationRepository extends JpaRepository<Authentication, 
 	Authentication findByEmployee_Id(Integer id);
 
 	boolean existsByCode(String code);
+
+	Authentication findByCode(String code);
 }

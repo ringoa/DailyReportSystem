@@ -45,9 +45,6 @@ public class Employee {
 	@Column(nullable = false)
 	private LocalDateTime updatedAt;
 
-	@Column(nullable = true)
-	private LocalDate validDate;
-
 	@OneToOne(mappedBy="employee")
 	private Authentication authentication;
 

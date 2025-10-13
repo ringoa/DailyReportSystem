@@ -27,7 +27,7 @@
 		<span th:errors="*{employee.name}" class="err"></span>
 		<br>
 		<label for="password">パスワード</label>
-		<input type="text" th:field="*{password}" th:errorclass="err">
+		<input type="password" th:field="*{password}" th:errorclass="err" id="password" name="password">
 		<span th:errors="*{password}" class="err"></span>
 		<br>
 		<label for="role">権限</label>

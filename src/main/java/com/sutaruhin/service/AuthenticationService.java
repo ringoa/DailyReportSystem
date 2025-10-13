@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.sutaruhin.entity.Authentication;
@@ -22,6 +23,9 @@ public class AuthenticationService {
 
 	@Autowired
 	private AuthenticationRepository authenticationRepository;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public List<Authentication> getAuthentications(){
 		return authenticationRepository.findByEmployeeDeleteFlag(0);
@@ -45,6 +49,7 @@ public class AuthenticationService {
 		employeeRepository.save(employee);
 
 		authentication.setEmployee(employee);
+		authentication.setPassword(passwordEncoder.encode(authentication.getPassword()));
 		authentication.setValidDate(LocalDate.parse("9999-12-31"));
 		authenticationRepository.save(authentication);
 
@@ -66,6 +71,7 @@ public class AuthenticationService {
 		employeeRepository.save(employee);
 		authentication.setEmployee(employee);
 
+		authentication.setPassword(passwordEncoder.encode(authentication.getPassword()));
 		authentication.setValidDate(LocalDate.parse("9999-12-31"));
 		authenticationRepository.save(authentication);
 

@@ -4,8 +4,10 @@
 	<meta charset="UTF-8">
 	<title>List of Employee</title>
 	<link rel="stylesheet" th:href="@{/css/employee/list.css}">
+	<link rel="stylesheet" th:href="@{/css/header.css}" />
 </head>
 <body>
+	<div th:replace="fragment/header :: header"></div>
 	<h1>従業員一覧</h1>
 	<table>
 		<tr>

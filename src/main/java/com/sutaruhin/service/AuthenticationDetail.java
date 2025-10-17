@@ -17,7 +17,7 @@ public class AuthenticationDetail implements UserDetails {
 
 	private final Authentication authentication;
 	private final Collection<GrantedAuthority> authorities;
-	
+
 	public AuthenticationDetail(Authentication authentication) {
 		this.authentication = authentication;
 		this.authorities = new ArrayList<GrantedAuthority>();

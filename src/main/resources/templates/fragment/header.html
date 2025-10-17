@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="UTF-8">
+	<title>共通ヘッダー</title>
+</head>
+<body>
+	<div th:fragment="header">
+		<header>
+			<h1>日報管理システム</h1>
+			<nav>
+				<a th:href="@{/employee/list}" sec:authorize="hasAuthority('管理者')">従業員管理</a>
+				<a th:href="@{/report/allList}">日報管理</a>
+				<a th:text="${fullName}" th:href="@{/report/list}"></a>
+				<form method="post" th:action="@{/logout}">
+        			<input type="submit" value="ログアウト">
+    			</form>
+			</nav>
+		</header>
+	</div>
+</body>
+</html>

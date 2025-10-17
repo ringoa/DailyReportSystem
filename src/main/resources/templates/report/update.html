@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>update a report</title>
+    <link rel="stylesheet" th:href="@{/css/report/update.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}" />
+</head>
+<body>
+	<div th:replace="fragment/header :: header"></div>
+	<h1>日報編集ページ</h1>
+	<form method="POST" th:action="@{/report/update}" th:object="${report}">
+		<label for="id"></label>
+        <input type="hidden" id="id" name="id" th:field="*{id}">
+		<label for="employeeId"></label>
+        <input type="hidden" id="employeeId" name="employeeId" th:field="*{employee.id}">
+        <label for="createdAt"></label>
+        <input type="hidden" id="createdAt" name="createdAt" th:field="*{createdAt}">
+		<br>
+		<label for="code">日付</label>
+		<input type="date" th:field="*{reportDate}" th:errorclass="err">
+		<span th:errors="*{reportDate}" class="err"></span>
+		<br>
+		<label for="name">氏名</label>
+		<input type="text" th:field="*{employee.name}" th:errorclass="err" readonly>
+		<span th:errors="*{employee.name}" class="err"></span>
+		<br>
+		<label for="title">タイトル</label>
+		<input type="text" th:field="*{title}" th:errorclass="err">
+		<span th:errors="*{title}" class="err"></span>
+		<br>
+		<label for="contet">内容</label>
+		<textarea th:field="*{content}" th:errorclass="err"></textarea>
+		<span th:errors="*{content}" class="err"></span>
+		<br>
+		<input type="submit" value="投稿">
+	</form>
+	<a th:href="@{/report/allList}">投稿一覧に戻る</a>
+</body>
+</html>

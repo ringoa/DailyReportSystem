@@ -3,14 +3,17 @@ package com.sutaruhin.entity;
 import java.time.LocalDate;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
@@ -48,4 +51,6 @@ public class Employee {
 	@OneToOne(mappedBy="employee")
 	private Authentication authentication;
 
+	@OneToMany(mappedBy = "employee")
+	private List<Report> reports;
 }

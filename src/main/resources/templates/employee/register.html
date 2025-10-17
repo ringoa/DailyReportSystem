@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>Register a new employee</title>
-    <link rel="stylesheet" th:href="@{/css/employee/register.css}">
+    <link rel="stylesheet" th:href="@{/css/employee/register.css}" />
+    <link rel="stylesheet" th:href="@{/css/header.css}" />
 </head>
 <body>
+	<div th:replace="fragment/header :: header"></div>
 	<h1>従業員　新規登録</h1>
 	<form method="POST" th:action="@{/employee/register}" th:object="${authentication}">
 		<label for="code">社員番号</label>

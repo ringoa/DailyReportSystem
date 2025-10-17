@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+/* header.css */
+header {
+    display: flex;
+    justify-content: space-between; /* 左右に要素を分ける */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+}
+
+a {
+	text-decoration: none;
+}
+
+nav {
+    display: flex;
+    gap: 20px; /* リンクの間隔 */
+    align-items: center;
+}
+
+nav a, nav form input {
+    color: white;
+}
+
+nav form input {
+    margin: 0;
+    background: black;
+    border: none;
+}

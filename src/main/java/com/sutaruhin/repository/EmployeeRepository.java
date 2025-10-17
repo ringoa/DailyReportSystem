@@ -8,4 +8,6 @@ import com.sutaruhin.entity.Employee;
 public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
 
 	List<Employee> findByDeleteFlag(Integer deleteFlag);
+	
+	
 }

@@ -87,5 +87,12 @@ public class AuthenticationService {
 		return authenticationRepository.save(authentication);
 	}
 
+	public Integer findByUsername(String username) {
+		Authentication authentication = authenticationRepository.findByCode(username);
+		Integer employeeId = authentication.getEmployee().getId();
+
+		return employeeId;
+	}
+
 }
 

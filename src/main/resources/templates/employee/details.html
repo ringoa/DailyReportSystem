@@ -3,9 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" th:href="@{/css/employee/details.css}">
+	<link rel="stylesheet" th:href="@{/css/header.css}" />
 	<title>details of a employee</title>
 </head>
 <body>
+	<div th:replace="fragment/header :: header"></div>
 	<h1 th:text="'id:' + ${authentication.employee.id} + 'の従業員の詳細ページ'"></h1>
 	<table>
 		<tr>

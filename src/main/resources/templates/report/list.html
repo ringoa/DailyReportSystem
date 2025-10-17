@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Lists of Daily Report System</title>
+    <link rel="stylesheet" th:href="@{/css/report/detail.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}" />
+</head>
+<body>
+	<div th:replace="fragment/header :: header"></div>
+	<h1>日報管理システムへようこそ</h1>
+	<h2>自分の日報　一覧</h2>
+	<table>
+	  <thead>
+	    <tr>
+	      <th>氏名</th>
+	      <th>日付</th>
+	      <th>タイトル</th>
+	      <th>操作</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr th:each="report : ${reports}">
+	      <td th:text="${report.employee.name}"></td>
+	      <td th:text="${#temporals.format(report.reportDate, 'yyyy-MM-dd')}"></td>
+	      <td th:text="${report.title}"></td>
+	      <td>
+	      	<form th:method="post" th:action="@{/report/details}">
+				<input type="hidden" name="id" th:value="${report.id}"></input>
+				<button>詳細をみる</button>
+			</form>
+	      </td>
+	    </tr>
+	  </tbody>
+	</table>
+	<p th:text="'(全' + ${reports.size()} + '件)'"></p>
+
+	<form th:method="get" th:action="@{/report/register}">
+		<input type="hidden" name="id" th:value="${employeeId}"></input>
+		<button>新規登録する</button>
+	</form>
+</body>
+</html>

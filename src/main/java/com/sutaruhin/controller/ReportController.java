@@ -29,10 +29,7 @@ public class ReportController {
 	@GetMapping("/allList")
 	public String getAllLists(Principal principal, Model model) {
 		model.addAttribute("reports", reportService.getAllReports());
-		List<Report> myReports = reportService.getReports(principal.getName());
-		Report firstReport = myReports.get(0);
-		Integer employeeId = firstReport.getEmployee().getId();
-
+		Integer employeeId = reportService.getEmployeeId(principal.getName());
 		model.addAttribute("employeeId", employeeId);
 
 		return "report/allList";
@@ -41,8 +38,8 @@ public class ReportController {
 	@GetMapping("/list")
 	public String getMyList(Principal principal, Model model) {
 		List<Report> reports = reportService.getReports(principal.getName());
-		Report firstReport = reports.get(0);
-		Integer employeeId = firstReport.getEmployee().getId();
+		Integer employeeId = reportService.getEmployeeId(principal.getName());
+
 		model.addAttribute("reports", reports);
 		model.addAttribute("employeeId", employeeId);
 

@@ -1,6 +1,7 @@
 package com.sutaruhin.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,21 @@ public class ReportService {
 	public List<Report> getReports(String code){
 		Authentication authentication = authenticationRepository.findByCode(code);
 		Integer employeeId = authentication.getEmployee().getId();
-		
-		return reportRepository.findByEmployee_Id(employeeId);
+
+		List<Report> reports = reportRepository.findByEmployee_Id(employeeId);
+
+	    if (reports == null) {
+	        reports = new ArrayList<>();
+	    }
+
+	    return reports;
+	}
+
+	public Integer getEmployeeId(String code) {
+		Authentication authentication = authenticationRepository.findByCode(code);
+		Integer employeeId = authentication.getEmployee().getId();
+
+		return employeeId;
 	}
 
 	public Report getReportDetails(Integer reportId) {
@@ -56,7 +70,7 @@ public class ReportService {
 		employeeRepository.save(report.getEmployee());
 		report.setCreatedAt(LocalDateTime.now());
 		report.setUpdatedAt(LocalDateTime.now());
-		
+
 		return reportRepository.save(report);
 	}
 
